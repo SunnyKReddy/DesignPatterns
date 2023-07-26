@@ -25,7 +25,7 @@ public class Journey implements JourneyI{
             case BIKE: travel = new BikeTravel(); travel.travel(); break;
             case WALK: travel = new WalkTravel(); travel.travel(); break;
             default:
-                System.out.println("Select Valid mode of Transport"); break;
+                travel = new CarTravel(); travel.travel(); break;
         }
 
     }
