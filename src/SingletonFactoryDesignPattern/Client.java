@@ -1,6 +1,10 @@
 package SingletonFactoryDesignPattern;
 
+import java.util.HashMap;
+
 public class Client {
+    public static HashMap<String, CodePlatformFactory> codePlatformFactoryHashMap = new HashMap<>();
+    public static CodePlatformFactory codePlatformFactory;
     public static void main(String[] args) {
 //        CodeTypeOptions inputCodeType;
 //        CodeTypeOptions inputCode;
@@ -45,7 +49,12 @@ public class Client {
         CodeFactory codeFactory = new CodeFactory(inputCodeType);
         Code code = codeFactory.getCodeTypeInstance();
         code.setCode(inputCode);
-        CodePlatformFactory codePlatformFactory = new CodePlatformFactory(inputCodeType);
+        if(!codePlatformFactoryHashMap.containsKey(inputCodeType)) {
+            codePlatformFactory = new CodePlatformFactory(inputCodeType);
+            codePlatformFactoryHashMap.put(inputCodeType, codePlatformFactory);
+        }else {
+            codePlatformFactory = codePlatformFactoryHashMap.get(inputCodeType);
+        }
         System.out.println("Code Platform Factory of: " + inputCodeType + " is -> " + codePlatformFactory);
         CodePlatform codePlatform = codePlatformFactory.getCodePlatformInstance();
         System.out.println("Code Platform of: " + inputCodeType + " is -> " + codePlatform);
