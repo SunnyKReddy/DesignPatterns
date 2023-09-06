@@ -19,6 +19,15 @@ public class PizzaMaker {
         Pizza pizzaBase3 = new Brocolli(new Chicken(new Cheese(new MaidaBasePizza())));
         generateBill(pizzaBase3);
 
+        //Pizza4
+        Pizza pizzaBase4 = new Cheese(
+                                new Brocolli(
+                                    new Tomato(
+                                        new Chicken(
+                                            new Meat(
+                                                new MultiGrainBasePizza())))));
+        generateBill(pizzaBase4);
+
     }
 
     public static void generateBill(Pizza pizza) {
